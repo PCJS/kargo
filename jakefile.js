@@ -1,7 +1,7 @@
 (function(){
   "use strict";
 
-  require('./package.json');
+  var jsonPackage = require('./package.json');
 
   desc('Default Build');
   task("default",['version','jshint', "chimp"], function(){
@@ -11,12 +11,11 @@
   desc("Check Node Version");
   task("version", function(){
     console.log("Checking Node version");
-    var jsonPackage = require('./package.json');
     var expectedVersion = "v" + jsonPackage.engines.node;
     var actualVersion = process.version;
 
     if(actualVersion !== expectedVersion){
-      fail("Incorrect Node version found: " + actualVersion + ", but expected: " + expectedVersion);
+      fail("Incorrect Node version\n -------- Found: " + actualVersion + ", but expected: " + expectedVersion + "----------");
     }
   });
 
